@@ -1,231 +1,83 @@
 const SUPABASE_URL = "https://mjthtkwrcusjmlhweeqm.supabase.co";
 
-const SUPABASE_KEY =
-  "sb_publishable_Wm0jQrrP3zWHGPR0umeOAg_nVXb4R18";
+const SUPABASE_KEY = "sb_publishable_Wm0jQrrP3zWHGPR0umeOAg_nVXb4R18";
 
-const supabaseClient =
-  window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
-  );
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
 window.goldSupabase = supabaseClient;
 
-
-// ==============================
-// ELEMENTOS
-// ==============================
-
 const login = document.getElementById("goldLogin");
-const app = document.getElementById("goldApp");
-
+const app = document.querySelector(".app-shell");
 const form = document.getElementById("goldLoginForm");
-
-const errorBox =
-  document.getElementById("goldLoginError");
-
-
-// ==============================
-// MOSTRAR SISTEMA
-// ==============================
+const errorBox = document.getElementById("goldLoginError");
 
 function mostrarSistema() {
-
-  login.style.display = "none";
-
-  app.style.display = "flex";
-
+  if (login) login.style.display = "none";
+  if (app) app.style.display = "flex";
 }
-
-
-// ==============================
-// MOSTRAR LOGIN
-// ==============================
 
 function mostrarLogin() {
-
-  login.style.display = "flex";
-
-  app.style.display = "none";
-
+  if (login) login.style.display = "flex";
+  if (app) app.style.display = "none";
 }
 
+form.addEventListener("submit", async function(event) {
 
-// ==============================
-// LOGIN
-// ==============================
+  event.preventDefault();
 
-form.addEventListener(
-  "submit",
-  async function(event) {
+  errorBox.textContent = "";
 
-    event.preventDefault();
+  const email = document.getElementById("goldEmail").value.trim();
+  const password = document.getElementById("goldPassword").value;
 
-    errorBox.textContent = "";
+  const button = form.querySelector("button");
 
-    const email =
-      document
-        .getElementById("goldEmail")
-        .value
-        .trim();
+  button.disabled = true;
+  button.textContent = "INGRESANDO...";
 
-    const password =
-      document
-        .getElementById("goldPassword")
-        .value;
+  const { data, error } = await supabaseClient.auth.signInWithPassword({
+    email: email,
+    password: password
+  });
 
-
-    const button =
-      form.querySelector("button");
-
-    button.disabled = true;
-
-    button.textContent =
-      "INGRESANDO...";
-
-
-    const { data, error } =
-      await supabaseClient.auth
-        .signInWithPassword({
-
-          email: email,
-
-          password: password
-
-        });
-
-
-    button.disabled = false;
-
-    button.textContent =
-      "INGRESAR";
-
-
-    if (error) {
-
-      console.error(error);
-
-      errorBox.textContent =
-        "Correo o contraseña incorrectos.";
-
-      return;
-
-    }
-
-
-    await cargarPerfil(data.user);
-
-  }
-);
-
-
-// ==============================
-// PERFIL
-// ==============================
-
-async function cargarPerfil(user) {
-
-  const { data, error } =
-    await supabaseClient
-      .from("profiles")
-      .select(
-        "id, organization_id, full_name, role"
-      )
-      .eq("id", user.id)
-      .maybeSingle();
-
+  button.disabled = false;
+  button.textContent = "INGRESAR";
 
   if (error) {
-
     console.error(error);
-
-    errorBox.textContent =
-      "Error al cargar el perfil.";
-
+    errorBox.textContent = error.message;
     return;
-
   }
-
-
-  if (!data) {
-
-    errorBox.textContent =
-      "No existe perfil para este usuario.";
-
-    return;
-
-  }
-
-
-  window.goldCurrentUser =
-    user;
-
-  window.goldCurrentProfile =
-    data;
-
 
   mostrarSistema();
 
-}
-
-
-// ==============================
-// COMPROBAR SESIÓN
-// ==============================
+});
 
 async function comprobarSesion() {
 
-  const { data } =
-    await supabaseClient
-      .auth
-      .getSession();
-
+  const { data } = await supabaseClient.auth.getSession();
 
   if (data.session) {
-
-    await cargarPerfil(
-      data.session.user
-    );
-
+    mostrarSistema();
   } else {
-
     mostrarLogin();
-
   }
 
 }
 
+supabaseClient.auth.onAuthStateChange(function(event, session) {
 
-// ==============================
-// CAMBIO DE SESIÓN
-// ==============================
+  console.log("Cambio de autenticación:", event);
 
-supabaseClient.auth.onAuthStateChange(
-  async function(event, session) {
-
-    console.log(
-      "Auth:",
-      event
-    );
-
-    if (session) {
-
-      await cargarPerfil(
-        session.user
-      );
-
-    } else {
-
-      mostrarLogin();
-
-    }
-
+  if (session) {
+    mostrarSistema();
+  } else {
+    mostrarLogin();
   }
-);
 
-
-// ==============================
-// INICIO
-// ==============================
+});
 
 comprobarSesion();
