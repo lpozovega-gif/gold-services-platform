@@ -1,10 +1,15 @@
 // =====================================================
 // GOLD SERVICES - APP.JS
+// VERSION SEGURA
 // =====================================================
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  console.log("GOLD SERVICES: APP.JS CARGADO - VERSION NUEVA");
+  console.log("GOLD SERVICES: APP.JS NUEVO CARGADO");
+
+  // ===================================================
+  // ELEMENTOS
+  // ===================================================
 
   const loginView = document.getElementById("loginView");
   const dashboardView = document.getElementById("dashboardView");
@@ -54,13 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // LOGIN
   // ===================================================
 
-  if (loginForm) {
+  if (loginForm !== null) {
 
     loginForm.addEventListener("submit", function (event) {
 
       event.preventDefault();
 
-      console.log("GOLD SERVICES: Formulario de login enviado.");
+      console.log("GOLD SERVICES: LOGIN");
 
       if (typeof window.iniciarSesion === "function") {
 
@@ -69,12 +74,18 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
 
         console.error(
-          "GOLD SERVICES: ERROR - iniciarSesion() no existe."
+          "GOLD SERVICES: iniciarSesion() no está disponible."
         );
 
       }
 
     });
+
+  } else {
+
+    console.warn(
+      "GOLD SERVICES: No se encontró #goldLoginForm"
+    );
 
   }
 
@@ -83,13 +94,13 @@ document.addEventListener("DOMContentLoaded", function () {
   // CERRAR SESIÓN
   // ===================================================
 
-  if (logoutButton) {
+  if (logoutButton !== null) {
 
     logoutButton.addEventListener("click", function (event) {
 
       event.preventDefault();
 
-      console.log("GOLD SERVICES: Botón cerrar sesión.");
+      console.log("GOLD SERVICES: CERRAR SESIÓN");
 
       if (typeof window.cerrarSesion === "function") {
 
@@ -98,12 +109,18 @@ document.addEventListener("DOMContentLoaded", function () {
       } else {
 
         console.error(
-          "GOLD SERVICES: ERROR - cerrarSesion() no existe."
+          "GOLD SERVICES: cerrarSesion() no está disponible."
         );
 
       }
 
     });
+
+  } else {
+
+    console.warn(
+      "GOLD SERVICES: No se encontró #logoutButton"
+    );
 
   }
 
