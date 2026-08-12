@@ -1,35 +1,121 @@
-<form id="goldLoginForm" autocomplete="on">
+<!DOCTYPE html>
+<html lang="es">
 
-  <label for="goldEmail">
-    Correo electrónico
-  </label>
+<head>
+  <meta charset="UTF-8">
 
-  <input
-    id="goldEmail"
-    name="email"
-    type="email"
-    autocomplete="username"
-    placeholder="Correo electrónico"
-    required
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
   >
 
-  <label for="goldPassword">
-    Contraseña
-  </label>
-
-  <input
-    id="goldPassword"
-    name="password"
-    type="password"
-    autocomplete="current-password"
-    placeholder="Contraseña"
-    required
+  <meta
+    name="description"
+    content="Gold Services and Consulting SpA - Plataforma digital de servicios, calidad, trazabilidad y sourcing."
   >
 
-  <button type="submit">
-    INGRESAR
-  </button>
+  <title>Gold Services | Sistema Operativo Digital</title>
 
-  <div id="goldLoginError" role="alert"></div>
+  <link rel="stylesheet" href="styles.css">
+</head>
 
-</form>
+<body>
+
+  <main id="app">
+
+    <section id="loginView">
+
+      <div class="login-container">
+
+        <h1>Gold Services</h1>
+
+        <p>
+          Sistema Operativo Digital
+        </p>
+
+        <form
+          id="goldLoginForm"
+          autocomplete="on"
+        >
+
+          <label for="goldEmail">
+            Correo electrónico
+          </label>
+
+          <input
+            id="goldEmail"
+            name="email"
+            type="email"
+            autocomplete="username"
+            placeholder="Correo electrónico"
+            required
+          >
+
+          <label for="goldPassword">
+            Contraseña
+          </label>
+
+          <input
+            id="goldPassword"
+            name="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Contraseña"
+            required
+          >
+
+          <button type="submit">
+            INGRESAR
+          </button>
+
+          <div
+            id="goldLoginError"
+            role="alert"
+            aria-live="polite"
+          ></div>
+
+        </form>
+
+      </div>
+
+    </section>
+
+    <section
+      id="dashboardView"
+      hidden
+    >
+
+      <header>
+
+        <h1>Gold Services</h1>
+
+        <button
+          type="button"
+          id="logoutButton"
+          onclick="window.cerrarSesion()"
+        >
+          CERRAR SESIÓN
+        </button>
+
+      </header>
+
+      <div id="dashboardContent">
+
+        <h2>Dashboard operacional</h2>
+
+        <p>
+          Bienvenido a Gold Services.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="auth.js"></script>
+  <script src="app.js"></script>
+
+</body>
+
+</html>
