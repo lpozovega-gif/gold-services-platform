@@ -1,69 +1,106 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Gold Services | Sistema Operativo Digital</title>
+<head>
+
+  <meta charset="utf-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1"
+  >
+
+  <meta
+    name="theme-color"
+    content="#0B2265"
+  >
+
+  <title>
+    Gold Services | Sistema Operativo
+  </title>
 
   <link rel="stylesheet" href="styles.css">
+
 </head>
+
 
 <body>
 
-  <!-- LOGIN -->
 
-  <div id="goldLogin">
+<!-- ========================= -->
+<!-- LOGIN -->
+<!-- ========================= -->
 
-    <div class="gold-login-card">
+<div id="goldLogin">
 
-      <h1>GOLD SERVICES</h1>
+  <div class="gold-login-card">
 
-      <p>
-        Sistema Operativo Digital<br>
-        Gold Services and Consulting SpA
-      </p>
+    <h1>GOLD SERVICES</h1>
 
-      <form id="goldLoginForm">
+    <p>
+      Sistema Operativo Digital<br>
+      Gold Services and Consulting SpA
+    </p>
 
-        <label>Correo electrónico</label>
 
-        <input
-          id="goldEmail"
-          type="email"
-          required
-        >
+    <form id="goldLoginForm">
 
-        <label>Contraseña</label>
+      <label>
+        Correo electrónico
+      </label>
 
-        <input
-          id="goldPassword"
-          type="password"
-          required
-        >
+      <input
+        id="goldEmail"
+        type="email"
+        required
+      >
 
-        <button type="submit">
-          INGRESAR
-        </button>
 
-        <div id="goldLoginError"></div>
+      <label>
+        Contraseña
+      </label>
 
-      </form>
+      <input
+        id="goldPassword"
+        type="password"
+        required
+      >
 
-    </div>
+
+      <button type="submit">
+        INGRESAR
+      </button>
+
+
+      <div id="goldLoginError"></div>
+
+    </form>
 
   </div>
 
+</div>
 
-  <!-- SISTEMA -->
 
-  <div id="goldApp" class="app-shell">
 
-    <aside class="sidebar">
+<!-- ========================= -->
+<!-- SISTEMA ORIGINAL -->
+<!-- ========================= -->
 
-      <div class="brand">
+<div
+  class="app-shell"
+  id="goldApp"
+>
 
-        <strong>GOLD SERVICES</strong>
+  <aside class="sidebar">
+
+
+    <div class="brand">
+
+      <div>
+
+        <strong>
+          GOLD SERVICES
+        </strong>
 
         <small>
           AND CONSULTING SpA
@@ -71,345 +108,247 @@
 
       </div>
 
+    </div>
 
-      <nav>
 
-        <button onclick="mostrarModulo('dashboard')">
-          ▦ Dashboard
+    <nav id="nav">
+
+
+      <button
+        class="nav-item active"
+        data-view="dashboard"
+      >
+
+        ▦
+
+        <span>
+          Dashboard
+        </span>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-view="clientes"
+      >
+
+        ◉
+
+        <span>
+          Clientes
+        </span>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-view="servicios"
+      >
+
+        ◆
+
+        <span>
+          Servicios
+        </span>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-view="proyectos"
+      >
+
+        ◇
+
+        <span>
+          Operaciones
+        </span>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-view="trazabilidad"
+      >
+
+        ⌁
+
+        <span>
+          Gold Trace
+        </span>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-view="certificaciones"
+      >
+
+        ✓
+
+        <span>
+          Certificaciones
+        </span>
+
+      </button>
+
+
+      <button
+        class="nav-item"
+        data-view="mercados"
+      >
+
+        ◎
+
+        <span>
+          Mercados
+        </span>
+
+      </button>
+
+
+    </nav>
+
+
+    <div class="sidebar-footer">
+
+      V1.0 · Agosto 2026<br>
+
+      Arándanos + Avellanas
+
+    </div>
+
+
+  </aside>
+
+
+
+  <main class="main">
+
+
+    <header class="topbar">
+
+
+      <div>
+
+        <span class="eyebrow">
+          SISTEMA OPERATIVO DIGITAL
+        </span>
+
+        <h1 id="pageTitle">
+          Dashboard
+        </h1>
+
+      </div>
+
+
+      <div class="top-actions">
+
+        <button
+          class="btn ghost"
+          id="exportBtn"
+        >
+          Exportar datos
         </button>
 
-        <button onclick="mostrarModulo('clientes')">
-          ◉ Clientes
+
+        <button
+          class="btn primary"
+          id="quickAdd"
+        >
+          + Nuevo registro
         </button>
 
-        <button onclick="mostrarModulo('operaciones')">
-          ◆ Operaciones
-        </button>
 
-        <button onclick="mostrarModulo('trazabilidad')">
-          ◇ Gold Trace
-        </button>
-
-        <button onclick="mostrarModulo('servicios')">
-          ⌁ Servicios
-        </button>
-
-        <button onclick="mostrarModulo('certificacion')">
-          ✓ Certificación
-        </button>
-
-        <button onclick="mostrarModulo('sourcing')">
-          ◎ Sourcing
-        </button>
-
-      </nav>
-
-    </aside>
-
-
-    <main class="main-content">
-
-      <header class="topbar">
-
-        <div>
-
-          <span>
-            SISTEMA OPERATIVO DIGITAL
-          </span>
-
-          <h2 id="tituloModulo">
-            Dashboard
-          </h2>
-
-        </div>
-
-
-        <button onclick="cerrarSesion()">
+        <button
+          class="btn ghost"
+          onclick="cerrarSesion()"
+        >
           Cerrar sesión
         </button>
 
-      </header>
+      </div>
 
 
-      <!-- DASHBOARD -->
+    </header>
 
-      <section
-        id="dashboard"
-        class="modulo"
-      >
 
-        <div class="dashboard-grid">
+    <section id="content"></section>
 
-          <div class="metric-card">
 
-            <span>Clientes registrados</span>
+  </main>
 
-            <strong>2</strong>
 
-            <small>
-              Productores + compradores
-            </small>
+</div>
 
-          </div>
 
 
-          <div class="metric-card">
+<!-- MODAL -->
 
-            <span>Servicios en curso</span>
+<div
+  id="modal"
+  class="modal hidden"
+>
 
-            <strong>2</strong>
+  <div class="modal-card">
 
-            <small>
-              Operaciones activas
-            </small>
+    <div class="modal-head">
 
-          </div>
+      <h2 id="modalTitle">
+        Nuevo registro
+      </h2>
 
+      <button id="closeModal">
+        ×
+      </button>
 
-          <div class="metric-card">
+    </div>
 
-            <span>Lotes trazables</span>
 
-            <strong>2</strong>
-
-            <small>
-              Gold Trace
-            </small>
-
-          </div>
-
-
-          <div class="metric-card">
-
-            <span>Líneas comerciales</span>
-
-            <strong>3</strong>
-
-            <small>
-              Sampling · Certify · Sourcing
-            </small>
-
-          </div>
-
-        </div>
-
-
-        <div class="panel">
-
-          <h3>
-            Bienvenido a Gold Services
-          </h3>
-
-          <p>
-            Sistema Operativo Digital para
-            calidad, certificación, trazabilidad
-            y sourcing de productos agrícolas.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- CLIENTES -->
-
-      <section
-        id="clientes"
-        class="modulo oculto"
-      >
-
-        <div class="panel">
-
-          <h3>CRM — Clientes</h3>
-
-          <p>
-            Gestión de productores,
-            compradores y contactos.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- OPERACIONES -->
-
-      <section
-        id="operaciones"
-        class="modulo oculto"
-      >
-
-        <div class="panel">
-
-          <h3>Operaciones</h3>
-
-          <p>
-            Control de proyectos y servicios.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- GOLD TRACE -->
-
-      <section
-        id="trazabilidad"
-        class="modulo oculto"
-      >
-
-        <div class="panel">
-
-          <h3>Gold Trace</h3>
-
-          <p>
-            Trazabilidad de lotes y productores.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- SERVICIOS -->
-
-      <section
-        id="servicios"
-        class="modulo oculto"
-      >
-
-        <div class="panel">
-
-          <h3>Servicios</h3>
-
-          <p>
-            Gold Sampling · Gold Certify · Gold Sourcing
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- CERTIFICACIÓN -->
-
-      <section
-        id="certificacion"
-        class="modulo oculto"
-      >
-
-        <div class="panel">
-
-          <h3>Gold Certify</h3>
-
-          <p>
-            Preparación y verificación documental.
-          </p>
-
-        </div>
-
-      </section>
-
-
-      <!-- SOURCING -->
-
-      <section
-        id="sourcing"
-        class="modulo oculto"
-      >
-
-        <div class="panel">
-
-          <h3>Gold Sourcing</h3>
-
-          <p>
-            Conexión entre productores y
-            compradores internacionales.
-          </p>
-
-        </div>
-
-      </section>
-
-    </main>
+    <div id="modalBody"></div>
 
   </div>
 
-
-  <!-- SUPABASE -->
-
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-  <script src="auth.js"></script>
+</div>
 
 
-  <!-- FUNCIONES -->
 
-  <script>
+<!-- MENSAJES -->
 
-    function mostrarModulo(modulo) {
-
-      document
-        .querySelectorAll(".modulo")
-        .forEach(function(elemento) {
-
-          elemento.classList.add("oculto");
-
-        });
+<div
+  id="toast"
+  class="toast hidden"
+></div>
 
 
-      const seleccionado =
-        document.getElementById(modulo);
+
+<!-- ========================= -->
+<!-- SUPABASE -->
+<!-- ========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 
-      if (seleccionado) {
+<!-- QR -->
 
-        seleccionado.classList.remove("oculto");
-
-      }
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
 
 
-      const titulos = {
+<!-- AUTENTICACIÓN -->
 
-        dashboard: "Dashboard",
-
-        clientes: "Clientes",
-
-        operaciones: "Operaciones",
-
-        trazabilidad: "Gold Trace",
-
-        servicios: "Servicios",
-
-        certificacion: "Certificación",
-
-        sourcing: "Sourcing"
-
-      };
+<script src="auth.js"></script>
 
 
-      document.getElementById(
-        "tituloModulo"
-      ).textContent =
-        titulos[modulo] || "Dashboard";
+<!-- SISTEMA ORIGINAL -->
 
-    }
+<script src="app.js"></script>
 
-
-    async function cerrarSesion() {
-
-      if (window.goldSupabase) {
-
-        await window.goldSupabase.auth.signOut();
-
-      }
-
-      location.reload();
-
-    }
-
-  </script>
 
 </body>
+
 </html>
