@@ -65,18 +65,17 @@ async function cerrarSesion(event) {
 
 }
 
+
 // =====================================================
 // HACER LA FUNCIÓN DISPONIBLE GLOBALMENTE
 // =====================================================
 
 window.cerrarSesion = cerrarSesion;
 
+
 // =====================================================
 // COMPATIBILIDAD CON BOTONES HTML
 // =====================================================
-
-// Permite que onclick="cerrarSesion()" funcione
-// aunque el botón esté definido directamente en HTML.
 
 if (typeof window.cerrarSesion !== "function") {
 
@@ -85,5 +84,95 @@ if (typeof window.cerrarSesion !== "function") {
     return cerrarSesion(event);
 
   };
+
+}
+
+
+// =====================================================
+// ACCESIBILIDAD - CORREGIR LABELS
+// =====================================================
+
+function repararLabels() {
+
+  document.querySelectorAll("label").forEach((label, index) => {
+
+    // Ya está correctamente asociado
+    if (label.control) {
+      return;
+    }
+
+    // Asociación implícita:
+    // <label><input></label>
+    if (
+      label.querySelector(
+        "input, select, textarea, button, meter, output, progress"
+      )
+    ) {
+      return;
+    }
+
+    // Buscar el campo que contiene el label
+    const field =
+      label.closest(".field") ||
+      label.parentElement;
+
+    if (!field) {
+      return;
+    }
+
+    // Buscar el control correspondiente
+    const control = field.querySelector(
+      "input:not([type='hidden']), select, textarea, button, meter, output, progress"
+    );
+
+    if (!control) {
+      return;
+    }
+
+    // Crear ID si no existe
+    if (!control.id) {
+
+      control.id =
+        "gold-field-" +
+        index +
+        "-" +
+        Date.now();
+
+    }
+
+    // Asociar label con input/select/etc.
+    label.htmlFor = control.id;
+
+  });
+
+}
+
+
+// =====================================================
+// EJECUTAR CORRECCIÓN
+// =====================================================
+
+repararLabels();
+
+
+// =====================================================
+// DETECTAR FORMULARIOS CREADOS DINÁMICAMENTE
+// =====================================================
+
+if (document.body) {
+
+  const goldLabelObserver =
+    new MutationObserver(() => {
+
+      repararLabels();
+
+    });
+
+  goldLabelObserver.observe(document.body, {
+
+    childList: true,
+    subtree: true
+
+  });
 
 }
