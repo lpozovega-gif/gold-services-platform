@@ -1,44 +1,546 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0B2265" />
-  <title>Gold Services | Sistema Operativo</title>
-  <link rel="icon" href="assets/logo.png" />
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <div class="app-shell">
-    <aside class="sidebar">
-      <div class="brand">
-        <img src="assets/logo.png" alt="Gold Services" />
-        <div><strong>GOLD SERVICES</strong><small>AND CONSULTING SpA</small></div>
-      </div>
-      <nav id="nav">
-        <button class="nav-item active" data-view="dashboard">▦ <span>Dashboard</span></button>
-        <button class="nav-item" data-view="clientes">◉ <span>Clientes</span></button>
-        <button class="nav-item" data-view="servicios">◆ <span>Servicios</span></button>
-        <button class="nav-item" data-view="proyectos">◇ <span>Operaciones</span></button>
-        <button class="nav-item" data-view="trazabilidad">⌁ <span>Gold Trace</span></button>
-        <button class="nav-item" data-view="certificaciones">✓ <span>Certificaciones</span></button>
-        <button class="nav-item" data-view="mercados">◎ <span>Mercados</span></button>
-      </nav>
-      <div class="sidebar-footer">V1.0 · Agosto 2026<br/>Arándanos + Avellanas</div>
-    </aside>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0B2265">
 
-    <main class="main">
-      <header class="topbar">
-        <div><span class="eyebrow">SISTEMA OPERATIVO DIGITAL</span><h1 id="pageTitle">Dashboard</h1></div>
-        <div class="top-actions"><button class="btn ghost" id="exportBtn">Exportar datos</button><button class="btn primary" id="quickAdd">+ Nuevo registro</button></div>
-      </header>
-      <section id="content"></section>
-    </main>
+  <title>Gold Services | Sistema Operativo Digital</title>
+
+  <link rel="icon" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ============================= -->
+  <!-- LOGIN GOLD SERVICES -->
+  <!-- ============================= -->
+
+  <div id="goldLogin">
+
+    <div class="gold-login-card">
+
+      <h1>GOLD SERVICES</h1>
+
+      <p>
+        Sistema Operativo Digital<br>
+        Gold Services and Consulting SpA
+      </p>
+
+      <form id="goldLoginForm">
+
+        <label for="goldEmail">
+          Correo electrónico
+        </label>
+
+        <input
+          id="goldEmail"
+          type="email"
+          autocomplete="username"
+          required
+        >
+
+        <label for="goldPassword">
+          Contraseña
+        </label>
+
+        <input
+          id="goldPassword"
+          type="password"
+          autocomplete="current-password"
+          required
+        >
+
+        <button type="submit">
+          INGRESAR
+        </button>
+
+        <div id="goldLoginError"></div>
+
+      </form>
+
+    </div>
+
   </div>
 
-  <div id="modal" class="modal hidden"><div class="modal-card"><div class="modal-head"><h2 id="modalTitle">Nuevo registro</h2><button id="closeModal">×</button></div><div id="modalBody"></div></div></div>
-  <div id="toast" class="toast hidden"></div>
-  <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
-  <script src="app.js"></script>
+
+  <!-- ============================= -->
+  <!-- SISTEMA OPERATIVO -->
+  <!-- ============================= -->
+
+  <div class="app-shell">
+
+    <aside class="sidebar">
+
+      <div class="brand">
+
+        <img
+          src="assets/logo.png"
+          alt="Gold Services"
+        >
+
+        <div>
+          <strong>GOLD SERVICES</strong>
+          <small>AND CONSULTING SpA</small>
+        </div>
+
+      </div>
+
+      <nav>
+
+        <button onclick="mostrarModulo('dashboard')">
+          ▦ Dashboard
+        </button>
+
+        <button onclick="mostrarModulo('clientes')">
+          ◉ Clientes
+        </button>
+
+        <button onclick="mostrarModulo('operaciones')">
+          ◆ Operaciones
+        </button>
+
+        <button onclick="mostrarModulo('trazabilidad')">
+          ◇ Gold Trace
+        </button>
+
+        <button onclick="mostrarModulo('servicios')">
+          ⌁ Servicios
+        </button>
+
+        <button onclick="mostrarModulo('certificacion')">
+          ✓ Certificación
+        </button>
+
+        <button onclick="mostrarModulo('sourcing')">
+          ◎ Sourcing
+        </button>
+
+      </nav>
+
+    </aside>
+
+
+    <main class="main-content">
+
+      <header class="topbar">
+
+        <div>
+
+          <span>SISTEMA OPERATIVO DIGITAL</span>
+
+          <h2 id="tituloModulo">
+            Dashboard
+          </h2>
+
+        </div>
+
+        <button onclick="cerrarSesion()">
+          Cerrar sesión
+        </button>
+
+      </header>
+
+
+      <!-- DASHBOARD -->
+
+      <section id="dashboard" class="modulo">
+
+        <div class="dashboard-grid">
+
+          <div class="metric-card">
+
+            <span>Clientes registrados</span>
+
+            <strong>2</strong>
+
+            <small>
+              Productores + compradores
+            </small>
+
+          </div>
+
+
+          <div class="metric-card">
+
+            <span>Servicios en curso</span>
+
+            <strong>2</strong>
+
+            <small>
+              Operaciones activas
+            </small>
+
+          </div>
+
+
+          <div class="metric-card">
+
+            <span>Lotes trazables</span>
+
+            <strong>2</strong>
+
+            <small>
+              Gold Trace
+            </small>
+
+          </div>
+
+
+          <div class="metric-card">
+
+            <span>Líneas comerciales</span>
+
+            <strong>3</strong>
+
+            <small>
+              Sampling · Certify · Sourcing
+            </small>
+
+          </div>
+
+        </div>
+
+
+        <div class="panel">
+
+          <h3>
+            Operaciones recientes
+          </h3>
+
+          <table>
+
+            <thead>
+
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Producto</th>
+                <th>Etapa</th>
+                <th>Avance</th>
+              </tr>
+
+            </thead>
+
+            <tbody>
+
+              <tr>
+
+                <td>GS-2026-001</td>
+
+                <td>
+                  Productor Piloto Maule
+                </td>
+
+                <td>
+                  Avellana Europea
+                </td>
+
+                <td>
+                  Gap Analysis
+                </td>
+
+                <td>
+                  45%
+                </td>
+
+              </tr>
+
+
+              <tr>
+
+                <td>GS-2026-002</td>
+
+                <td>
+                  Productor Piloto Linares
+                </td>
+
+                <td>
+                  Arándano
+                </td>
+
+                <td>
+                  Diagnóstico
+                </td>
+
+                <td>
+                  20%
+                </td>
+
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+
+        <div class="panel">
+
+          <h3>
+            Control de riesgo
+          </h3>
+
+          <div class="risk-grid">
+
+            <div>
+              ✓ Regla 50/50
+              <small>
+                Anticipo antes de terreno y saldo contra certificado interno.
+              </small>
+            </div>
+
+            <div>
+              ✓ Cero flujo de terceros
+              <small>
+                Gold Services no toca el dinero de la fruta.
+              </small>
+            </div>
+
+            <div>
+              ✓ Certificación oficial
+              <small>
+                La emite un organismo acreditado externo.
+              </small>
+            </div>
+
+            <div>
+              ✓ Productos foco
+              <small>
+                Arándanos y avellanas.
+              </small>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CLIENTES -->
+
+      <section id="clientes" class="modulo oculto">
+
+        <div class="panel">
+
+          <h3>CRM — Clientes y Productores</h3>
+
+          <p>
+            Administración de productores, compradores,
+            exportadores y contactos comerciales.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- OPERACIONES -->
+
+      <section id="operaciones" class="modulo oculto">
+
+        <div class="panel">
+
+          <h3>Operaciones</h3>
+
+          <p>
+            Control de proyectos, servicios,
+            etapas y avances.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- TRAZABILIDAD -->
+
+      <section id="trazabilidad" class="modulo oculto">
+
+        <div class="panel">
+
+          <h3>Gold Trace</h3>
+
+          <p>
+            Registro de lotes, productores,
+            procesos y trazabilidad.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- SERVICIOS -->
+
+      <section id="servicios" class="modulo oculto">
+
+        <div class="panel">
+
+          <h3>Servicios Gold Services</h3>
+
+          <div class="service-grid">
+
+            <div>
+              <h4>Gold Sampling</h4>
+              <p>
+                Muestreo y control de calidad.
+              </p>
+            </div>
+
+            <div>
+              <h4>Gold Certify</h4>
+              <p>
+                Preparación y verificación
+                documental para certificación.
+              </p>
+            </div>
+
+            <div>
+              <h4>Gold Sourcing</h4>
+              <p>
+                Conexión entre productores
+                y compradores internacionales.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- CERTIFICACIÓN -->
+
+      <section id="certificacion" class="modulo oculto">
+
+        <div class="panel">
+
+          <h3>Gold Certify</h3>
+
+          <p>
+            Gestión de preparación, diagnóstico,
+            documentación y verificación.
+          </p>
+
+          <p>
+            La certificación oficial es emitida
+            por un organismo acreditado externo.
+          </p>
+
+        </div>
+
+      </section>
+
+
+      <!-- SOURCING -->
+
+      <section id="sourcing" class="modulo oculto">
+
+        <div class="panel">
+
+          <h3>Gold Sourcing</h3>
+
+          <p>
+            Gestión comercial entre productores
+            y compradores internacionales.
+          </p>
+
+          <p>
+            Productos foco:
+            <strong>arándanos y avellanas</strong>.
+          </p>
+
+        </div>
+
+      </section>
+
+    </main>
+
+  </div>
+
+
+  <!-- ============================= -->
+  <!-- SUPABASE -->
+  <!-- ============================= -->
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+  <script src="./auth.js"></script>
+
+
+  <!-- ============================= -->
+  <!-- FUNCIONES DEL SISTEMA -->
+  <!-- ============================= -->
+
+  <script>
+
+    function mostrarModulo(modulo) {
+
+      document
+        .querySelectorAll('.modulo')
+        .forEach(function(elemento) {
+
+          elemento.classList.add('oculto');
+
+        });
+
+
+      const seleccionado =
+        document.getElementById(modulo);
+
+      if (seleccionado) {
+
+        seleccionado.classList.remove('oculto');
+
+      }
+
+
+      const titulos = {
+
+        dashboard: 'Dashboard',
+
+        clientes: 'Clientes',
+
+        operaciones: 'Operaciones',
+
+        trazabilidad: 'Gold Trace',
+
+        servicios: 'Servicios',
+
+        certificacion: 'Certificación',
+
+        sourcing: 'Sourcing'
+
+      };
+
+
+      document.getElementById(
+        'tituloModulo'
+      ).textContent = titulos[modulo] || 'Dashboard';
+
+    }
+
+
+    async function cerrarSesion() {
+
+      if (
+        window.goldSupabase
+      ) {
+
+        await window.goldSupabase.auth.signOut();
+
+      }
+
+      location.reload();
+
+    }
+
+  </script>
+
 </body>
 </html>
