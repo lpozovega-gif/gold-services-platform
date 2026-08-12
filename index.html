@@ -23,6 +23,10 @@
 
   <main id="app">
 
+    <!-- ============================= -->
+    <!-- LOGIN -->
+    <!-- ============================= -->
+
     <section id="loginView">
 
       <div class="login-container">
@@ -35,6 +39,7 @@
 
         <form
           id="goldLoginForm"
+          method="post"
           autocomplete="on"
         >
 
@@ -64,7 +69,10 @@
             required
           >
 
-          <button type="submit">
+          <button
+            type="submit"
+            id="loginButton"
+          >
             INGRESAR
           </button>
 
@@ -80,6 +88,11 @@
 
     </section>
 
+
+    <!-- ============================= -->
+    <!-- DASHBOARD -->
+    <!-- ============================= -->
+
     <section
       id="dashboardView"
       hidden
@@ -92,7 +105,6 @@
         <button
           type="button"
           id="logoutButton"
-          onclick="window.cerrarSesion()"
         >
           CERRAR SESIÓN
         </button>
@@ -113,8 +125,80 @@
 
   </main>
 
+
+  <!-- ============================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ============================= -->
+
   <script src="auth.js"></script>
   <script src="app.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+      const loginForm =
+        document.getElementById("goldLoginForm");
+
+      const logoutButton =
+        document.getElementById("logoutButton");
+
+      /*
+       * IMPORTANTE:
+       * Evita que el navegador envíe el formulario
+       * mediante GET y coloque email/password en la URL.
+       */
+
+      if (loginForm) {
+
+        loginForm.addEventListener("submit", function (event) {
+
+          event.preventDefault();
+
+          if (typeof iniciarSesion === "function") {
+
+            iniciarSesion(event);
+
+          } else {
+
+            console.error(
+              "GOLD SERVICES: La función iniciarSesion() no está disponible."
+            );
+
+          }
+
+        });
+
+      }
+
+
+      /*
+       * CIERRE DE SESIÓN
+       */
+
+      if (logoutButton) {
+
+        logoutButton.addEventListener("click", function (event) {
+
+          event.preventDefault();
+
+          if (typeof window.cerrarSesion === "function") {
+
+            window.cerrarSesion(event);
+
+          } else {
+
+            console.error(
+              "GOLD SERVICES: cerrarSesion() no está disponible."
+            );
+
+          }
+
+        });
+
+      }
+
+    });
+  </script>
 
 </body>
 
