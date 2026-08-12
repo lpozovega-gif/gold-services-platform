@@ -1,21 +1,17 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#0B2265">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Gold Services | Sistema Operativo Digital</title>
 
-  <link rel="icon" href="assets/logo.png">
   <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
-  <!-- ============================= -->
-  <!-- LOGIN GOLD SERVICES -->
-  <!-- ============================= -->
+  <!-- LOGIN -->
 
   <div id="goldLogin">
 
@@ -30,25 +26,19 @@
 
       <form id="goldLoginForm">
 
-        <label for="goldEmail">
-          Correo electrónico
-        </label>
+        <label>Correo electrónico</label>
 
         <input
           id="goldEmail"
           type="email"
-          autocomplete="username"
           required
         >
 
-        <label for="goldPassword">
-          Contraseña
-        </label>
+        <label>Contraseña</label>
 
         <input
           id="goldPassword"
           type="password"
-          autocomplete="current-password"
           required
         >
 
@@ -65,27 +55,22 @@
   </div>
 
 
-  <!-- ============================= -->
-  <!-- SISTEMA OPERATIVO -->
-  <!-- ============================= -->
+  <!-- SISTEMA -->
 
-  <div class="app-shell">
+  <div id="goldApp" class="app-shell">
 
     <aside class="sidebar">
 
       <div class="brand">
 
-        <img
-          src="assets/logo.png"
-          alt="Gold Services"
-        >
+        <strong>GOLD SERVICES</strong>
 
-        <div>
-          <strong>GOLD SERVICES</strong>
-          <small>AND CONSULTING SpA</small>
-        </div>
+        <small>
+          AND CONSULTING SpA
+        </small>
 
       </div>
+
 
       <nav>
 
@@ -128,13 +113,16 @@
 
         <div>
 
-          <span>SISTEMA OPERATIVO DIGITAL</span>
+          <span>
+            SISTEMA OPERATIVO DIGITAL
+          </span>
 
           <h2 id="tituloModulo">
             Dashboard
           </h2>
 
         </div>
+
 
         <button onclick="cerrarSesion()">
           Cerrar sesión
@@ -145,7 +133,10 @@
 
       <!-- DASHBOARD -->
 
-      <section id="dashboard" class="modulo">
+      <section
+        id="dashboard"
+        class="modulo"
+      >
 
         <div class="dashboard-grid">
 
@@ -206,114 +197,14 @@
         <div class="panel">
 
           <h3>
-            Operaciones recientes
+            Bienvenido a Gold Services
           </h3>
 
-          <table>
-
-            <thead>
-
-              <tr>
-                <th>ID</th>
-                <th>Cliente</th>
-                <th>Producto</th>
-                <th>Etapa</th>
-                <th>Avance</th>
-              </tr>
-
-            </thead>
-
-            <tbody>
-
-              <tr>
-
-                <td>GS-2026-001</td>
-
-                <td>
-                  Productor Piloto Maule
-                </td>
-
-                <td>
-                  Avellana Europea
-                </td>
-
-                <td>
-                  Gap Analysis
-                </td>
-
-                <td>
-                  45%
-                </td>
-
-              </tr>
-
-
-              <tr>
-
-                <td>GS-2026-002</td>
-
-                <td>
-                  Productor Piloto Linares
-                </td>
-
-                <td>
-                  Arándano
-                </td>
-
-                <td>
-                  Diagnóstico
-                </td>
-
-                <td>
-                  20%
-                </td>
-
-              </tr>
-
-            </tbody>
-
-          </table>
-
-        </div>
-
-
-        <div class="panel">
-
-          <h3>
-            Control de riesgo
-          </h3>
-
-          <div class="risk-grid">
-
-            <div>
-              ✓ Regla 50/50
-              <small>
-                Anticipo antes de terreno y saldo contra certificado interno.
-              </small>
-            </div>
-
-            <div>
-              ✓ Cero flujo de terceros
-              <small>
-                Gold Services no toca el dinero de la fruta.
-              </small>
-            </div>
-
-            <div>
-              ✓ Certificación oficial
-              <small>
-                La emite un organismo acreditado externo.
-              </small>
-            </div>
-
-            <div>
-              ✓ Productos foco
-              <small>
-                Arándanos y avellanas.
-              </small>
-            </div>
-
-          </div>
+          <p>
+            Sistema Operativo Digital para
+            calidad, certificación, trazabilidad
+            y sourcing de productos agrícolas.
+          </p>
 
         </div>
 
@@ -322,15 +213,18 @@
 
       <!-- CLIENTES -->
 
-      <section id="clientes" class="modulo oculto">
+      <section
+        id="clientes"
+        class="modulo oculto"
+      >
 
         <div class="panel">
 
-          <h3>CRM — Clientes y Productores</h3>
+          <h3>CRM — Clientes</h3>
 
           <p>
-            Administración de productores, compradores,
-            exportadores y contactos comerciales.
+            Gestión de productores,
+            compradores y contactos.
           </p>
 
         </div>
@@ -340,15 +234,17 @@
 
       <!-- OPERACIONES -->
 
-      <section id="operaciones" class="modulo oculto">
+      <section
+        id="operaciones"
+        class="modulo oculto"
+      >
 
         <div class="panel">
 
           <h3>Operaciones</h3>
 
           <p>
-            Control de proyectos, servicios,
-            etapas y avances.
+            Control de proyectos y servicios.
           </p>
 
         </div>
@@ -356,17 +252,19 @@
       </section>
 
 
-      <!-- TRAZABILIDAD -->
+      <!-- GOLD TRACE -->
 
-      <section id="trazabilidad" class="modulo oculto">
+      <section
+        id="trazabilidad"
+        class="modulo oculto"
+      >
 
         <div class="panel">
 
           <h3>Gold Trace</h3>
 
           <p>
-            Registro de lotes, productores,
-            procesos y trazabilidad.
+            Trazabilidad de lotes y productores.
           </p>
 
         </div>
@@ -376,38 +274,18 @@
 
       <!-- SERVICIOS -->
 
-      <section id="servicios" class="modulo oculto">
+      <section
+        id="servicios"
+        class="modulo oculto"
+      >
 
         <div class="panel">
 
-          <h3>Servicios Gold Services</h3>
+          <h3>Servicios</h3>
 
-          <div class="service-grid">
-
-            <div>
-              <h4>Gold Sampling</h4>
-              <p>
-                Muestreo y control de calidad.
-              </p>
-            </div>
-
-            <div>
-              <h4>Gold Certify</h4>
-              <p>
-                Preparación y verificación
-                documental para certificación.
-              </p>
-            </div>
-
-            <div>
-              <h4>Gold Sourcing</h4>
-              <p>
-                Conexión entre productores
-                y compradores internacionales.
-              </p>
-            </div>
-
-          </div>
+          <p>
+            Gold Sampling · Gold Certify · Gold Sourcing
+          </p>
 
         </div>
 
@@ -416,20 +294,17 @@
 
       <!-- CERTIFICACIÓN -->
 
-      <section id="certificacion" class="modulo oculto">
+      <section
+        id="certificacion"
+        class="modulo oculto"
+      >
 
         <div class="panel">
 
           <h3>Gold Certify</h3>
 
           <p>
-            Gestión de preparación, diagnóstico,
-            documentación y verificación.
-          </p>
-
-          <p>
-            La certificación oficial es emitida
-            por un organismo acreditado externo.
+            Preparación y verificación documental.
           </p>
 
         </div>
@@ -439,20 +314,18 @@
 
       <!-- SOURCING -->
 
-      <section id="sourcing" class="modulo oculto">
+      <section
+        id="sourcing"
+        class="modulo oculto"
+      >
 
         <div class="panel">
 
           <h3>Gold Sourcing</h3>
 
           <p>
-            Gestión comercial entre productores
-            y compradores internacionales.
-          </p>
-
-          <p>
-            Productos foco:
-            <strong>arándanos y avellanas</strong>.
+            Conexión entre productores y
+            compradores internacionales.
           </p>
 
         </div>
@@ -464,28 +337,24 @@
   </div>
 
 
-  <!-- ============================= -->
   <!-- SUPABASE -->
-  <!-- ============================= -->
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-  <script src="./auth.js"></script>
+  <script src="auth.js"></script>
 
 
-  <!-- ============================= -->
-  <!-- FUNCIONES DEL SISTEMA -->
-  <!-- ============================= -->
+  <!-- FUNCIONES -->
 
   <script>
 
     function mostrarModulo(modulo) {
 
       document
-        .querySelectorAll('.modulo')
+        .querySelectorAll(".modulo")
         .forEach(function(elemento) {
 
-          elemento.classList.add('oculto');
+          elemento.classList.add("oculto");
 
         });
 
@@ -493,44 +362,44 @@
       const seleccionado =
         document.getElementById(modulo);
 
+
       if (seleccionado) {
 
-        seleccionado.classList.remove('oculto');
+        seleccionado.classList.remove("oculto");
 
       }
 
 
       const titulos = {
 
-        dashboard: 'Dashboard',
+        dashboard: "Dashboard",
 
-        clientes: 'Clientes',
+        clientes: "Clientes",
 
-        operaciones: 'Operaciones',
+        operaciones: "Operaciones",
 
-        trazabilidad: 'Gold Trace',
+        trazabilidad: "Gold Trace",
 
-        servicios: 'Servicios',
+        servicios: "Servicios",
 
-        certificacion: 'Certificación',
+        certificacion: "Certificación",
 
-        sourcing: 'Sourcing'
+        sourcing: "Sourcing"
 
       };
 
 
       document.getElementById(
-        'tituloModulo'
-      ).textContent = titulos[modulo] || 'Dashboard';
+        "tituloModulo"
+      ).textContent =
+        titulos[modulo] || "Dashboard";
 
     }
 
 
     async function cerrarSesion() {
 
-      if (
-        window.goldSupabase
-      ) {
+      if (window.goldSupabase) {
 
         await window.goldSupabase.auth.signOut();
 
