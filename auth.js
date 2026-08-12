@@ -1,213 +1,231 @@
-const SUPABASE_URL = 'https://mjthtkwrcusjmlhweeqm.supabase.co';
+const SUPABASE_URL = "https://mjthtkwrcusjmlhweeqm.supabase.co";
 
-const SUPABASE_PUBLISHABLE_KEY =
-  'sb_publishable_Wm0jQrrP3zWHGPR0umeOAg_nVXb4R18';
+const SUPABASE_KEY =
+  "sb_publishable_Wm0jQrrP3zWHGPR0umeOAg_nVXb4R18";
 
-const supabaseClient = window.supabase.createClient(
-  SUPABASE_URL,
-  SUPABASE_PUBLISHABLE_KEY
-);
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
 
 window.goldSupabase = supabaseClient;
 
 
-// ================================
-// ELEMENTOS DEL LOGIN
-// ================================
+// ==============================
+// ELEMENTOS
+// ==============================
 
-const login = document.getElementById('goldLogin');
-const loginForm = document.getElementById('goldLoginForm');
-const loginError = document.getElementById('goldLoginError');
+const login = document.getElementById("goldLogin");
+const app = document.getElementById("goldApp");
+
+const form = document.getElementById("goldLoginForm");
+
+const errorBox =
+  document.getElementById("goldLoginError");
 
 
-// ================================
-// MOSTRAR / OCULTAR LOGIN
-// ================================
+// ==============================
+// MOSTRAR SISTEMA
+// ==============================
+
+function mostrarSistema() {
+
+  login.style.display = "none";
+
+  app.style.display = "flex";
+
+}
+
+
+// ==============================
+// MOSTRAR LOGIN
+// ==============================
 
 function mostrarLogin() {
-  login.classList.remove('hidden');
-}
 
-function ocultarLogin() {
-  login.classList.add('hidden');
-}
+  login.style.display = "flex";
 
+  app.style.display = "none";
 
-// ================================
-// CARGAR PERFIL
-// ================================
-
-async function iniciarSistema(session) {
-
-  if (!session) {
-    mostrarLogin();
-    return;
-  }
-
-  const { data, error } = await supabaseClient
-    .from('profiles')
-    .select('id, organization_id, full_name, role')
-    .eq('id', session.user.id)
-    .maybeSingle();
-
-  if (error) {
-
-    console.error('Error cargando perfil:', error);
-
-    loginError.textContent =
-      'Error al cargar el perfil.';
-
-    mostrarLogin();
-
-    return;
-  }
-
-  if (!data) {
-
-    console.error(
-      'No existe perfil para este usuario.'
-    );
-
-    loginError.textContent =
-      'El usuario no tiene un perfil configurado.';
-
-    mostrarLogin();
-
-    return;
-  }
-
-
-  // Guardar usuario y perfil
-
-  window.goldCurrentUser = session.user;
-
-  window.goldCurrentProfile = data;
-
-
-  // Ocultar login
-
-  ocultarLogin();
-
-
-  console.log(
-    'Gold Services - Usuario:',
-    session.user.email
-  );
-
-  console.log(
-    'Gold Services - Perfil:',
-    data
-  );
 }
 
 
-// ================================
+// ==============================
 // LOGIN
-// ================================
+// ==============================
 
-loginForm.addEventListener(
-  'submit',
+form.addEventListener(
+  "submit",
   async function(event) {
 
     event.preventDefault();
 
-    loginError.textContent = '';
-
+    errorBox.textContent = "";
 
     const email =
       document
-        .getElementById('goldEmail')
+        .getElementById("goldEmail")
         .value
         .trim();
 
     const password =
       document
-        .getElementById('goldPassword')
+        .getElementById("goldPassword")
         .value;
 
 
     const button =
-      loginForm.querySelector('button');
+      form.querySelector("button");
 
     button.disabled = true;
 
-    button.textContent = 'INGRESANDO...';
+    button.textContent =
+      "INGRESANDO...";
 
 
     const { data, error } =
-      await supabaseClient.auth.signInWithPassword({
+      await supabaseClient.auth
+        .signInWithPassword({
 
-        email: email,
+          email: email,
 
-        password: password
+          password: password
 
-      });
+        });
 
 
     button.disabled = false;
 
-    button.textContent = 'INGRESAR';
+    button.textContent =
+      "INGRESAR";
 
 
     if (error) {
 
-      console.error(
-        'Error de autenticación:',
-        error
-      );
+      console.error(error);
 
-      loginError.textContent =
-        'Correo o contraseña incorrectos.';
+      errorBox.textContent =
+        "Correo o contraseña incorrectos.";
 
       return;
+
     }
 
 
-    await iniciarSistema(data.session);
+    await cargarPerfil(data.user);
 
   }
 );
 
 
-// ================================
-// CAMBIOS DE SESIÓN
-// ================================
+// ==============================
+// PERFIL
+// ==============================
 
-supabaseClient.auth.onAuthStateChange(
-  function(event, session) {
-
-    console.log(
-      'Cambio de autenticación:',
-      event
-    );
-
-    iniciarSistema(session);
-
-  }
-);
-
-
-// ================================
-// COMPROBAR SESIÓN EXISTENTE
-// ================================
-
-(async function() {
+async function cargarPerfil(user) {
 
   const { data, error } =
-    await supabaseClient.auth.getSession();
+    await supabaseClient
+      .from("profiles")
+      .select(
+        "id, organization_id, full_name, role"
+      )
+      .eq("id", user.id)
+      .maybeSingle();
 
 
   if (error) {
 
-    console.error(
-      'Error obteniendo sesión:',
-      error
-    );
+    console.error(error);
+
+    errorBox.textContent =
+      "Error al cargar el perfil.";
 
     return;
+
   }
 
 
-  await iniciarSistema(data.session);
+  if (!data) {
 
-})();
+    errorBox.textContent =
+      "No existe perfil para este usuario.";
+
+    return;
+
+  }
+
+
+  window.goldCurrentUser =
+    user;
+
+  window.goldCurrentProfile =
+    data;
+
+
+  mostrarSistema();
+
+}
+
+
+// ==============================
+// COMPROBAR SESIÓN
+// ==============================
+
+async function comprobarSesion() {
+
+  const { data } =
+    await supabaseClient
+      .auth
+      .getSession();
+
+
+  if (data.session) {
+
+    await cargarPerfil(
+      data.session.user
+    );
+
+  } else {
+
+    mostrarLogin();
+
+  }
+
+}
+
+
+// ==============================
+// CAMBIO DE SESIÓN
+// ==============================
+
+supabaseClient.auth.onAuthStateChange(
+  async function(event, session) {
+
+    console.log(
+      "Auth:",
+      event
+    );
+
+    if (session) {
+
+      await cargarPerfil(
+        session.user
+      );
+
+    } else {
+
+      mostrarLogin();
+
+    }
+
+  }
+);
+
+
+// ==============================
+// INICIO
+// ==============================
+
+comprobarSesion();
