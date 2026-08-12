@@ -24,46 +24,66 @@ function mostrarLogin() {
   if (app) app.style.display = "none";
 }
 
-form.addEventListener("submit", async function(event) {
+if (form) {
 
-  event.preventDefault();
+  form.addEventListener("submit", async function(event) {
 
-  errorBox.textContent = "";
+    event.preventDefault();
 
-  const email = document.getElementById("goldEmail").value.trim();
-  const password = document.getElementById("goldPassword").value;
+    errorBox.textContent = "";
 
-  const button = form.querySelector("button");
+    const email = document
+      .getElementById("goldEmail")
+      .value
+      .trim();
 
-  button.disabled = true;
-  button.textContent = "INGRESANDO...";
+    const password = document
+      .getElementById("goldPassword")
+      .value;
 
-  const { data, error } = await supabaseClient.auth.signInWithPassword({
-    email: email,
-    password: password
+    const button = form.querySelector("button");
+
+    button.disabled = true;
+    button.textContent = "INGRESANDO...";
+
+    const result = await supabaseClient.auth.signInWithPassword({
+      email: email,
+      password: password
+    });
+
+    button.disabled = false;
+    button.textContent = "INGRESAR";
+
+    if (result.error) {
+
+      console.error("ERROR SUPABASE:", result.error);
+
+      errorBox.textContent =
+        "Error: " + result.error.message;
+
+      return;
+    }
+
+    console.log("LOGIN CORRECTO:", result.data.user);
+
+    mostrarSistema();
+
   });
 
-  button.disabled = false;
-  button.textContent = "INGRESAR";
-
-  if (error) {
-    console.error(error);
-    errorBox.textContent = error.message;
-    return;
-  }
-
-  mostrarSistema();
-
-});
+}
 
 async function comprobarSesion() {
 
-  const { data } = await supabaseClient.auth.getSession();
+  const result = await supabaseClient.auth.getSession();
 
-  if (data.session) {
+  if (result.data.session) {
+
     mostrarSistema();
+
   } else {
+
     mostrarLogin();
+
   }
 
 }
@@ -73,9 +93,13 @@ supabaseClient.auth.onAuthStateChange(function(event, session) {
   console.log("Cambio de autenticación:", event);
 
   if (session) {
+
     mostrarSistema();
+
   } else {
+
     mostrarLogin();
+
   }
 
 });
