@@ -29,60 +29,103 @@
 
     <section id="loginView">
 
-      <div class="login-container">
+      <div id="goldLogin">
 
-        <h1>Gold Services</h1>
+        <div class="gold-login-card">
 
-        <p>
-          Sistema Operativo Digital
-        </p>
+          <div class="login-brand">
 
-        <form
-          id="goldLoginForm"
-          method="post"
-          autocomplete="on"
-        >
+            <svg
+              width="52"
+              height="52"
+              viewBox="0 0 100 100"
+              role="img"
+              aria-label="Gold Services"
+            >
+              <polygon
+                points="50,4 90,27 90,73 50,96 10,73 10,27"
+                fill="none"
+                stroke="#D4AF37"
+                stroke-width="4"
+              />
+              <circle cx="50" cy="4" r="3.4" fill="#D4AF37" />
+              <circle cx="90" cy="27" r="3.4" fill="#D4AF37" />
+              <circle cx="90" cy="73" r="3.4" fill="#D4AF37" />
+              <circle cx="50" cy="96" r="3.4" fill="#D4AF37" />
+              <circle cx="10" cy="73" r="3.4" fill="#D4AF37" />
+              <circle cx="10" cy="27" r="3.4" fill="#D4AF37" />
+              <text
+                x="50"
+                y="53"
+                text-anchor="middle"
+                font-family="Segoe UI, Arial, sans-serif"
+                font-weight="700"
+                font-size="28"
+                fill="#0B2265"
+              >GS</text>
+              <path d="M33 68 Q40 58 50 61 Q44 73 33 68 Z" fill="#2E6F40" />
+              <path d="M67 68 Q60 58 50 61 Q56 73 67 68 Z" fill="#2E6F40" />
+            </svg>
 
-          <label for="goldEmail">
-            Correo electrónico
-          </label>
+            <strong>GOLD SERVICES</strong>
+            <small>AND CONSULTING SpA</small>
 
-          <input
-            id="goldEmail"
-            name="email"
-            type="email"
-            autocomplete="username"
-            placeholder="Correo electrónico"
-            required
+          </div>
+
+          <h1>Gold Services</h1>
+
+          <p>
+            Sistema Operativo Digital · Tu aliado técnico para exportar sin rechazos
+          </p>
+
+          <form
+            id="goldLoginForm"
+            method="post"
+            autocomplete="on"
           >
 
-          <label for="goldPassword">
-            Contraseña
-          </label>
+            <label for="goldEmail">
+              Correo electrónico
+            </label>
 
-          <input
-            id="goldPassword"
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            placeholder="Contraseña"
-            required
-          >
+            <input
+              id="goldEmail"
+              name="email"
+              type="email"
+              autocomplete="username"
+              placeholder="nombre@goldservices.cl"
+              required
+            >
 
-          <button
-            type="submit"
-            id="loginButton"
-          >
-            INGRESAR
-          </button>
+            <label for="goldPassword">
+              Contraseña
+            </label>
 
-          <div
-            id="goldLoginError"
-            role="alert"
-            aria-live="polite"
-          ></div>
+            <input
+              id="goldPassword"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="••••••••"
+              required
+            >
 
-        </form>
+            <button
+              type="submit"
+              id="loginButton"
+            >
+              INGRESAR
+            </button>
+
+            <div
+              id="goldLoginError"
+              role="alert"
+              aria-live="polite"
+            ></div>
+
+          </form>
+
+        </div>
 
       </div>
 
@@ -98,26 +141,255 @@
       hidden
     >
 
-      <header>
+      <div class="app-shell">
 
-        <h1>Gold Services</h1>
+        <aside class="sidebar">
 
-        <button
-          type="button"
-          id="logoutButton"
-        >
-          CERRAR SESIÓN
-        </button>
+          <div class="brand">
 
-      </header>
+            <svg
+              width="46"
+              height="46"
+              viewBox="0 0 100 100"
+              role="img"
+              aria-label="Gold Services"
+            >
+              <polygon
+                points="50,4 90,27 90,73 50,96 10,73 10,27"
+                fill="none"
+                stroke="#D4AF37"
+                stroke-width="4"
+              />
+              <circle cx="50" cy="4" r="3.4" fill="#D4AF37" />
+              <circle cx="90" cy="27" r="3.4" fill="#D4AF37" />
+              <circle cx="90" cy="73" r="3.4" fill="#D4AF37" />
+              <circle cx="50" cy="96" r="3.4" fill="#D4AF37" />
+              <circle cx="10" cy="73" r="3.4" fill="#D4AF37" />
+              <circle cx="10" cy="27" r="3.4" fill="#D4AF37" />
+              <text
+                x="50"
+                y="53"
+                text-anchor="middle"
+                font-family="Segoe UI, Arial, sans-serif"
+                font-weight="700"
+                font-size="28"
+                fill="#0B2265"
+              >GS</text>
+              <path d="M33 68 Q40 58 50 61 Q44 73 33 68 Z" fill="#2E6F40" />
+              <path d="M67 68 Q60 58 50 61 Q56 73 67 68 Z" fill="#2E6F40" />
+            </svg>
 
-      <div id="dashboardContent">
+            <div>
+              <strong>GOLD SERVICES</strong>
+              <small>AND CONSULTING SpA</small>
+            </div>
 
-        <h2>Dashboard operacional</h2>
+          </div>
 
-        <p>
-          Bienvenido a Gold Services.
-        </p>
+          <nav>
+
+            <button
+              type="button"
+              class="nav-item active"
+              data-view="home"
+            >
+              📊 Dashboard
+            </button>
+
+            <button
+              type="button"
+              class="nav-item"
+              data-view="propuestas"
+            >
+              🧾 Propuestas Comerciales
+            </button>
+
+          </nav>
+
+          <div class="sidebar-footer">
+            Calidad Gold,<br>Confianza Global.
+            <br><br>
+            Impulsado con Claude for Business.
+          </div>
+
+        </aside>
+
+        <div class="main">
+
+          <header class="topbar">
+
+            <div>
+              <span class="eyebrow" id="viewEyebrow">MÓDULO</span>
+              <h1 id="viewTitle">Dashboard operacional</h1>
+            </div>
+
+            <div class="top-actions">
+              <button
+                type="button"
+                class="btn ghost"
+                id="logoutButton"
+              >
+                CERRAR SESIÓN
+              </button>
+            </div>
+
+          </header>
+
+          <div class="content-wrap">
+
+            <!-- ===== VISTA: DASHBOARD ===== -->
+
+            <div id="view-home" class="view">
+
+              <div class="grid kpis">
+
+                <div class="card">
+                  <span class="kpi-label">Propuestas generadas</span>
+                  <span class="kpi-value" id="kpiTotalPropuestas">0</span>
+                  <span class="kpi-note">Histórico</span>
+                </div>
+
+                <div class="card">
+                  <span class="kpi-label">Monto total propuesto</span>
+                  <span class="kpi-value" id="kpiMontoTotal">$0</span>
+                  <span class="kpi-note">Neto + IVA</span>
+                </div>
+
+                <div class="card">
+                  <span class="kpi-label">Último cliente</span>
+                  <span class="kpi-value" id="kpiUltimoCliente">—</span>
+                  <span class="kpi-note" id="kpiUltimaFecha">Sin registros</span>
+                </div>
+
+                <div class="card">
+                  <span class="kpi-label">Servicios activos</span>
+                  <span class="kpi-value">3</span>
+                  <span class="kpi-note">Sampling · Certify · Sourcing</span>
+                </div>
+
+              </div>
+
+              <div class="card">
+                <div class="section-title">
+                  <h3>Bienvenido a Gold Services</h3>
+                </div>
+                <p class="muted">
+                  Cumplimos el estándar GlobalG.A.P. — verificamos cada punto crítico en terreno.
+                  Usa el módulo <strong>Propuestas Comerciales</strong> para generar cotizaciones
+                  con la identidad oficial de marca, listas para imprimir o enviar en PDF.
+                </p>
+              </div>
+
+            </div>
+
+            <!-- ===== VISTA: PROPUESTAS COMERCIALES ===== -->
+
+            <div id="view-propuestas" class="view" hidden>
+
+              <div
+                class="grid"
+                style="grid-template-columns: minmax(0,1.3fr) minmax(300px,0.9fr); align-items:start;"
+              >
+
+                <div class="card">
+
+                  <div class="section-title">
+                    <h3>Nueva propuesta comercial</h3>
+                  </div>
+
+                  <form id="propuestaForm">
+
+                    <div class="form-grid">
+
+                      <div class="field">
+                        <label for="propCliente">Cliente</label>
+                        <input id="propCliente" placeholder="Nombre del cliente" required>
+                      </div>
+
+                      <div class="field">
+                        <label for="propFecha">Fecha</label>
+                        <input id="propFecha" type="date" required>
+                      </div>
+
+                    </div>
+
+                    <div class="section-title" style="margin-top:18px;">
+                      <h3 style="font-size:13px;">Servicios y valores</h3>
+                      <button type="button" class="btn ghost" id="addItemBtn">+ Agregar servicio</button>
+                    </div>
+
+                    <div id="propuestaItems"></div>
+
+                    <div class="totals-box">
+                      <div class="row"><span>Neto</span><span id="totalNeto">$0</span></div>
+                      <div class="row"><span>IVA (19%)</span><span id="totalIva">$0</span></div>
+                      <div class="row total"><span>Total</span><span id="totalTotal">$0</span></div>
+                    </div>
+
+                    <div class="form-grid" style="margin-top:18px;">
+
+                      <div class="field full">
+                        <label for="propNotas">Notas adicionales (opcional)</label>
+                        <textarea id="propNotas" rows="2" placeholder="Notas específicas de esta propuesta"></textarea>
+                      </div>
+
+                      <div class="field full">
+                        <label for="propAlcanceTitulo">Título del alcance de servicio</label>
+                        <input id="propAlcanceTitulo">
+                      </div>
+
+                      <div class="field full">
+                        <label for="propAlcanceTexto">Alcance de servicio</label>
+                        <textarea id="propAlcanceTexto" rows="9"></textarea>
+                      </div>
+
+                    </div>
+
+                    <div class="form-actions">
+                      <button type="submit" class="btn primary">Guardar propuesta</button>
+                    </div>
+
+                  </form>
+
+                </div>
+
+                <div class="card">
+
+                  <div class="section-title">
+                    <h3>Propuestas guardadas</h3>
+                    <div style="display:flex; gap:6px;">
+                      <button type="button" class="btn ghost" id="exportExcelBtn">Exportar Excel</button>
+                      <button type="button" class="btn ghost" id="exportPropuestasBtn">Exportar JSON</button>
+                    </div>
+                  </div>
+
+                  <div class="table-wrap">
+                    <table class="table">
+                      <thead>
+                        <tr>
+                          <th>Cliente</th>
+                          <th>Fecha</th>
+                          <th>Total</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+                      <tbody id="propuestasTableBody"></tbody>
+                    </table>
+                  </div>
+
+                  <p class="empty" id="propuestasEmpty" hidden>
+                    Aún no hay propuestas guardadas.
+                  </p>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -125,13 +397,19 @@
 
   </main>
 
+  <div id="proposalPrintArea" class="proposal-print" hidden></div>
+
+  <div id="goldToast" class="toast hidden"></div>
+
 
   <!-- ============================= -->
   <!-- JAVASCRIPT -->
   <!-- ============================= -->
 
+  <script src="vendor/xlsx.core.min.js"></script>
   <script src="auth.js"></script>
   <script src="app.js"></script>
+  <script src="propuestas.js"></script>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {

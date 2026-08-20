@@ -12,21 +12,10 @@ async function cerrarSesion(event) {
 
   try {
 
-    const { error } =
-      await supabaseClient.auth.signOut();
-
-    if (error) {
-
-      console.error(
-        "GOLD SERVICES: Error cerrando sesión:",
-        error
-      );
-
-      return;
-    }
-
     window.goldCurrentUser = null;
     window.goldCurrentProfile = null;
+
+    localStorage.removeItem("goldCurrentUser");
 
     if (typeof mostrarLogin === "function") {
 

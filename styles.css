@@ -1,9 +1,12 @@
 :root {
+  /* Paleta oficial — Manual de Marca Gold Services v1.0 */
   --navy: #0b2265;
   --navy-dark: #07183f;
   --navy-light: #163b91;
   --gold: #d4af37;
   --green: #2e6f40;
+  --yellow-hv: #d6e836;
+  --carbon: #6b7280;
 
   --bg: #f4f6fa;
   --white: #ffffff;
@@ -991,6 +994,364 @@ textarea {
   text-align: center;
 
   font-size: 12px;
+}
+
+.login-brand {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+.login-brand strong {
+  color: var(--navy);
+
+  font-size: 13px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.8px;
+}
+
+.login-brand small {
+  color: var(--green);
+
+  font-size: 10px;
+
+  letter-spacing: 0.4px;
+}
+
+/* =========================================================
+   LÍNEAS DE SERVICIO (PROPUESTA COMERCIAL)
+========================================================= */
+
+.item-row {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1.6fr) 0.6fr 0.9fr 0.9fr auto;
+
+  gap: 8px;
+
+  align-items: center;
+
+  margin-bottom: 8px;
+}
+
+.item-row input {
+  width: 100%;
+
+  border: 1px solid #d7dde7;
+
+  border-radius: 8px;
+
+  padding: 9px 10px;
+
+  font-size: 12px;
+
+  outline: none;
+}
+
+.item-row input:focus {
+  border-color: var(--navy);
+
+  box-shadow: 0 0 0 3px rgba(11, 34, 101, 0.08);
+}
+
+.item-row .item-subtotal {
+  font-size: 12px;
+
+  font-weight: 700;
+
+  color: var(--navy);
+
+  text-align: right;
+}
+
+.item-remove {
+  width: 30px;
+
+  height: 30px;
+
+  border: 0;
+
+  border-radius: 8px;
+
+  background: #fdeceb;
+
+  color: var(--danger);
+
+  cursor: pointer;
+
+  font-size: 14px;
+
+  line-height: 1;
+}
+
+.totals-box {
+  margin-top: 14px;
+
+  padding-top: 12px;
+
+  border-top: 1px dashed var(--border);
+
+  display: grid;
+
+  gap: 6px;
+}
+
+.totals-box .row {
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 12px;
+
+  color: var(--muted);
+}
+
+.totals-box .row.total {
+  margin-top: 4px;
+
+  padding-top: 8px;
+
+  border-top: 1px solid var(--border);
+
+  color: var(--gold);
+
+  font-size: 16px;
+
+  font-weight: 800;
+}
+
+/* =========================================================
+   DOCUMENTO IMPRIMIBLE — PROPUESTA COMERCIAL
+========================================================= */
+
+.proposal-print {
+  background: var(--bg);
+
+  padding: 30px;
+
+  min-height: 100vh;
+}
+
+.proposal-print[hidden] {
+  display: none;
+}
+
+.doc {
+  max-width: 780px;
+
+  margin: 0 auto;
+
+  background: #fff;
+
+  padding: 34px 38px;
+
+  border-radius: 10px;
+
+  box-shadow: var(--shadow);
+}
+
+.doc-head {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+}
+
+.doc-head h1 {
+  margin: 0;
+
+  color: var(--navy);
+
+  font-size: 20px;
+}
+
+.doc-rule {
+  margin: 14px 0 20px;
+
+  border: 0;
+
+  border-top: 3px solid var(--gold);
+}
+
+.doc-fields {
+  display: flex;
+
+  gap: 30px;
+
+  margin-bottom: 18px;
+}
+
+.doc-field {
+  border: 1px dashed #ccd3df;
+
+  border-radius: 8px;
+
+  padding: 8px 12px;
+
+  font-size: 12px;
+}
+
+.doc-field label {
+  color: var(--muted);
+
+  font-weight: 700;
+
+  margin-right: 6px;
+}
+
+.doc h2 {
+  color: var(--navy);
+
+  font-size: 15px;
+
+  margin: 22px 0 10px;
+}
+
+.doc h3 {
+  color: var(--navy);
+
+  font-size: 13px;
+
+  margin: 18px 0 8px;
+}
+
+.doc-table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  font-size: 12px;
+}
+
+.doc-table th,
+.doc-table td {
+  padding: 9px 8px;
+
+  border-bottom: 1px solid var(--border);
+
+  text-align: left;
+}
+
+.doc-table th {
+  background: #fafbfc;
+
+  color: var(--muted);
+
+  font-size: 11px;
+}
+
+.doc-totals {
+  margin-top: 8px;
+
+  display: grid;
+
+  gap: 4px;
+
+  max-width: 260px;
+
+  margin-left: auto;
+}
+
+.doc-totals .row {
+  display: flex;
+
+  justify-content: space-between;
+
+  font-size: 12px;
+}
+
+.doc-totals .row.total {
+  border-top: 2px solid var(--gold);
+
+  margin-top: 4px;
+
+  padding-top: 6px;
+
+  font-weight: 800;
+
+  color: var(--navy);
+
+  font-size: 15px;
+}
+
+.doc-notes {
+  margin-top: 8px;
+
+  padding: 14px 16px;
+
+  border: 1px dashed #ccd3df;
+
+  border-radius: 8px;
+
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.doc-notes strong {
+  display: block;
+
+  margin-bottom: 6px;
+
+  color: var(--navy);
+}
+
+.doc-pagebreak {
+  page-break-before: always;
+}
+
+.doc-alcance {
+  font-size: 12px;
+
+  line-height: 1.7;
+
+  color: var(--text);
+
+  white-space: pre-wrap;
+}
+
+.doc-firma {
+  margin-top: 60px;
+
+  text-align: center;
+
+  font-size: 11px;
+
+  color: var(--muted);
+}
+
+.doc-sign-line {
+  width: 220px;
+
+  margin: 0 auto 8px;
+
+  border-top: 1px solid var(--text);
+}
+
+body.printing #app,
+body.printing .toast {
+  display: none;
+}
+
+@media print {
+  body.printing .proposal-print {
+    padding: 0;
+    background: #fff;
+  }
+
+  .doc {
+    box-shadow: none;
+
+    border-radius: 0;
+  }
 }
 
 /* =========================================================
