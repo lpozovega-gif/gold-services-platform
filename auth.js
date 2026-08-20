@@ -1,4 +1,93 @@
 // =====================================================
+// GOLD SERVICES - AUTENTICACIÓN LOCAL (SIN BACKEND)
+// =====================================================
+//
+// Este MVP no tiene backend: toda la sesión se guarda en
+// localStorage, igual que el resto de los datos de la app
+// (ver README). Si en el futuro se conecta un backend real
+// (p.ej. Supabase), reemplazar iniciarSesion/cerrarSesion
+// por las llamadas correspondientes.
+
+const GOLD_SESSION_KEY = "goldCurrentUser";
+
+// Restaurar sesión persistida ANTES de que app.js decida
+// qué vista mostrar.
+(function restaurarSesion() {
+
+  try {
+
+    const stored = localStorage.getItem(GOLD_SESSION_KEY);
+
+    if (stored) {
+      window.goldCurrentUser = JSON.parse(stored);
+    }
+
+  } catch (error) {
+
+    console.error(
+      "GOLD SERVICES: No se pudo restaurar la sesión:",
+      error
+    );
+
+  }
+
+})();
+
+
+// =====================================================
+// INICIAR SESIÓN
+// =====================================================
+
+function iniciarSesion(event) {
+
+  if (event) {
+    event.preventDefault();
+  }
+
+  const emailInput = document.getElementById("goldEmail");
+  const passwordInput = document.getElementById("goldPassword");
+  const errorBox = document.getElementById("goldLoginError");
+
+  const email = emailInput ? emailInput.value.trim() : "";
+  const password = passwordInput ? passwordInput.value : "";
+
+  if (!email || !password) {
+
+    if (errorBox) {
+      errorBox.textContent =
+        "Ingresa tu correo y contraseña.";
+    }
+
+    return;
+  }
+
+  const user = { email: email };
+
+  window.goldCurrentUser = user;
+
+  localStorage.setItem(
+    GOLD_SESSION_KEY,
+    JSON.stringify(user)
+  );
+
+  if (errorBox) {
+    errorBox.textContent = "";
+  }
+
+  console.log("GOLD SERVICES: Sesión iniciada:", email);
+
+  if (typeof window.mostrarDashboard === "function") {
+
+    window.mostrarDashboard();
+
+  }
+
+}
+
+window.iniciarSesion = iniciarSesion;
+
+
+// =====================================================
 // GOLD SERVICES - CIERRE DE SESIÓN GLOBAL
 // =====================================================
 
@@ -12,21 +101,21 @@ async function cerrarSesion(event) {
 
   try {
 
-    const { error } =
+    if (
+      typeof supabaseClient !== "undefined" &&
+      supabaseClient &&
+      supabaseClient.auth &&
+      typeof supabaseClient.auth.signOut === "function"
+    ) {
+
       await supabaseClient.auth.signOut();
 
-    if (error) {
-
-      console.error(
-        "GOLD SERVICES: Error cerrando sesión:",
-        error
-      );
-
-      return;
     }
 
     window.goldCurrentUser = null;
     window.goldCurrentProfile = null;
+
+    localStorage.removeItem(GOLD_SESSION_KEY);
 
     if (typeof mostrarLogin === "function") {
 

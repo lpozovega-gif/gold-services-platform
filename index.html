@@ -98,26 +98,226 @@
       hidden
     >
 
-      <header>
+      <div class="app-shell">
 
-        <h1>Gold Services</h1>
+        <aside class="sidebar">
 
-        <button
-          type="button"
-          id="logoutButton"
-        >
-          CERRAR SESIÓN
-        </button>
+          <div class="brand">
+            <strong>GOLD SERVICES</strong>
+            <small>Sistema Operativo Digital</small>
+          </div>
 
-      </header>
+          <nav>
 
-      <div id="dashboardContent">
+            <button
+              type="button"
+              class="nav-item active"
+              data-view="dashboard"
+            >
+              Dashboard
+            </button>
 
-        <h2>Dashboard operacional</h2>
+            <button
+              type="button"
+              class="nav-item"
+              data-view="tax"
+            >
+              Gestión Tributaria IA
+            </button>
 
-        <p>
-          Bienvenido a Gold Services.
-        </p>
+          </nav>
+
+          <div class="sidebar-footer">
+            Gold Services and Consulting SpA
+          </div>
+
+        </aside>
+
+        <div class="main">
+
+          <header class="topbar">
+
+            <div>
+              <span class="eyebrow">PANEL</span>
+              <h1 id="viewTitle">Dashboard operacional</h1>
+            </div>
+
+            <div class="top-actions">
+
+              <button
+                type="button"
+                id="logoutButton"
+                class="btn ghost"
+              >
+                Cerrar sesión
+              </button>
+
+            </div>
+
+          </header>
+
+          <div class="content-wrap">
+
+            <!-- ===================== -->
+            <!-- PANEL: DASHBOARD -->
+            <!-- ===================== -->
+
+            <div
+              id="dashboardPanel"
+              data-panel="dashboard"
+            >
+
+              <p class="muted">
+                Bienvenido a Gold Services. Usa el menú lateral
+                para acceder a Gestión Tributaria IA.
+              </p>
+
+            </div>
+
+            <!-- ===================== -->
+            <!-- PANEL: TRIBUTARIO IA -->
+            <!-- ===================== -->
+
+            <div
+              id="taxPanel"
+              data-panel="tax"
+              hidden
+            >
+
+              <p class="muted small">
+                Módulo demo inspirado en apps de gestión tributaria
+                con IA (como Cenit). Funciona 100% local en tu
+                navegador: no se conecta al SII, al SAT ni a
+                ningún servicio externo. Los montos son
+                estimaciones basadas en lo que registres aquí.
+              </p>
+
+              <div class="grid kpis">
+
+                <div class="card">
+                  <span class="kpi-label">Ingresos del mes</span>
+                  <span class="kpi-value green" id="taxKpiIngresos">$0</span>
+                  <span class="kpi-note">Ventas netas registradas</span>
+                </div>
+
+                <div class="card">
+                  <span class="kpi-label">Gastos del mes</span>
+                  <span class="kpi-value" id="taxKpiGastos">$0</span>
+                  <span class="kpi-note">Compras / gastos netos</span>
+                </div>
+
+                <div class="card">
+                  <span class="kpi-label">IVA estimado a pagar</span>
+                  <span class="kpi-value gold" id="taxKpiIva">$0</span>
+                  <span class="kpi-note">19% sobre el margen del mes</span>
+                </div>
+
+                <div class="card">
+                  <span class="kpi-label">Próximo vencimiento F29</span>
+                  <span class="kpi-value" id="taxKpiVencimiento">—</span>
+                  <span class="kpi-note">Estimado, día 12 del mes siguiente</span>
+                </div>
+
+              </div>
+
+              <div class="grid dashboard-grid">
+
+                <div class="card">
+
+                  <div class="section-title">
+                    <h3>Movimientos registrados</h3>
+                    <button
+                      type="button"
+                      class="btn primary"
+                      id="taxAddButton"
+                    >
+                      + Registrar movimiento
+                    </button>
+                  </div>
+
+                  <div class="table-wrap">
+
+                    <table class="table">
+
+                      <thead>
+                        <tr>
+                          <th>Fecha</th>
+                          <th>Tipo</th>
+                          <th>Descripción</th>
+                          <th>Monto neto</th>
+                          <th></th>
+                        </tr>
+                      </thead>
+
+                      <tbody id="taxMovementsBody">
+                      </tbody>
+
+                    </table>
+
+                  </div>
+
+                  <div id="taxEmptyState" class="empty">
+                    Aún no registras ventas ni gastos este mes.
+                  </div>
+
+                  <div class="form-actions">
+                    <button
+                      type="button"
+                      class="btn ghost"
+                      id="taxExportButton"
+                    >
+                      Exportar respaldo JSON
+                    </button>
+                  </div>
+
+                </div>
+
+                <div class="card">
+
+                  <div class="section-title">
+                    <h3>Asistente IA</h3>
+                  </div>
+
+                  <p class="muted small">
+                    Responde preguntas simples sobre tus ventas,
+                    gastos, IVA y vencimientos usando los datos que
+                    registraste arriba. Es un asistente local basado
+                    en reglas, no un modelo de lenguaje conectado a
+                    internet.
+                  </p>
+
+                  <div id="taxChatLog"></div>
+
+                  <form id="taxChatForm" class="form-actions" style="margin-top:12px;">
+
+                    <div class="field full" style="flex:1;">
+                      <label for="taxChatInput">
+                        Pregúntale al asistente
+                      </label>
+                      <input
+                        id="taxChatInput"
+                        name="pregunta"
+                        type="text"
+                        placeholder="Ej: ¿Cuánto IVA debo pagar este mes?"
+                        autocomplete="off"
+                      >
+                    </div>
+
+                    <button type="submit" class="btn primary">
+                      Preguntar
+                    </button>
+
+                  </form>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
 
       </div>
 
@@ -127,78 +327,91 @@
 
 
   <!-- ============================= -->
+  <!-- MODAL: NUEVO MOVIMIENTO TRIBUTARIO -->
+  <!-- ============================= -->
+
+  <div id="taxModal" class="modal hidden">
+
+    <div class="modal-card">
+
+      <div class="modal-head">
+        <h2>Registrar movimiento</h2>
+        <button type="button" id="taxModalClose">×</button>
+      </div>
+
+      <form id="taxMovementForm">
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label for="taxTipo">Tipo</label>
+            <select id="taxTipo" name="tipo" required>
+              <option value="venta">Venta / boleta emitida</option>
+              <option value="gasto">Gasto / factura de compra</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label for="taxFecha">Fecha</label>
+            <input id="taxFecha" name="fecha" type="date" required>
+          </div>
+
+          <div class="field full">
+            <label for="taxDescripcion">Descripción</label>
+            <input
+              id="taxDescripcion"
+              name="descripcion"
+              type="text"
+              placeholder="Ej: Venta arándano congelado - Cliente X"
+              required
+            >
+          </div>
+
+          <div class="field full">
+            <label for="taxMonto">Monto neto (CLP)</label>
+            <input
+              id="taxMonto"
+              name="monto"
+              type="number"
+              min="0"
+              step="1"
+              placeholder="0"
+              required
+            >
+          </div>
+
+        </div>
+
+        <div class="form-actions">
+          <button type="button" class="btn ghost" id="taxCancelButton">
+            Cancelar
+          </button>
+          <button type="submit" class="btn primary">
+            Guardar
+          </button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+
+  <!-- ============================= -->
+  <!-- TOAST -->
+  <!-- ============================= -->
+
+  <div id="taxToast" class="toast hidden"></div>
+
+
+  <!-- ============================= -->
   <!-- JAVASCRIPT -->
   <!-- ============================= -->
 
   <script src="auth.js"></script>
   <script src="app.js"></script>
-
-  <script>
-    document.addEventListener("DOMContentLoaded", function () {
-
-      const loginForm =
-        document.getElementById("goldLoginForm");
-
-      const logoutButton =
-        document.getElementById("logoutButton");
-
-      /*
-       * IMPORTANTE:
-       * Evita que el navegador envíe el formulario
-       * mediante GET y coloque email/password en la URL.
-       */
-
-      if (loginForm) {
-
-        loginForm.addEventListener("submit", function (event) {
-
-          event.preventDefault();
-
-          if (typeof iniciarSesion === "function") {
-
-            iniciarSesion(event);
-
-          } else {
-
-            console.error(
-              "GOLD SERVICES: La función iniciarSesion() no está disponible."
-            );
-
-          }
-
-        });
-
-      }
-
-
-      /*
-       * CIERRE DE SESIÓN
-       */
-
-      if (logoutButton) {
-
-        logoutButton.addEventListener("click", function (event) {
-
-          event.preventDefault();
-
-          if (typeof window.cerrarSesion === "function") {
-
-            window.cerrarSesion(event);
-
-          } else {
-
-            console.error(
-              "GOLD SERVICES: cerrarSesion() no está disponible."
-            );
-
-          }
-
-        });
-
-      }
-
-    });
-  </script>
+  <script src="tax.js"></script>
 
 </body>
 
