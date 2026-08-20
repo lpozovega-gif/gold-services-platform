@@ -526,6 +526,74 @@
 
     });
 
+    document.getElementById("exportExcelBtn").addEventListener("click", function () {
+
+      if (typeof XLSX === "undefined") {
+
+        if (typeof window.goldToast === "function") {
+          window.goldToast("No se pudo cargar el módulo de Excel (vendor/xlsx.core.min.js).");
+        }
+
+        return;
+
+      }
+
+      const propuestas = obtenerPropuestas();
+
+      if (propuestas.length === 0) {
+
+        if (typeof window.goldToast === "function") {
+          window.goldToast("Aún no hay propuestas para exportar.");
+        }
+
+        return;
+
+      }
+
+      const filas = [];
+
+      propuestas.forEach(function (propuesta) {
+
+        const totales = calcularTotales(propuesta.items);
+
+        propuesta.items.forEach(function (item, indice) {
+
+          filas.push({
+            Cliente: propuesta.cliente,
+            Fecha: propuesta.fecha,
+            Servicio: item.servicio,
+            "Cantidad": item.cantidad,
+            "Valor unit. (CLP)": item.valorUnit,
+            "Subtotal (CLP)": item.cantidad * item.valorUnit,
+            "Neto propuesta (CLP)": indice === 0 ? Math.round(totales.neto) : "",
+            "IVA 19% (CLP)": indice === 0 ? Math.round(totales.iva) : "",
+            "Total propuesta (CLP)": indice === 0 ? Math.round(totales.total) : "",
+            "Alcance de servicio": indice === 0 ? propuesta.alcanceTitulo : "",
+            "Notas": indice === 0 ? propuesta.notas : ""
+          });
+
+        });
+
+      });
+
+      const hoja = XLSX.utils.json_to_sheet(filas);
+
+      hoja["!cols"] = [
+        { wch: 20 }, { wch: 12 }, { wch: 26 }, { wch: 10 }, { wch: 16 },
+        { wch: 16 }, { wch: 18 }, { wch: 14 }, { wch: 18 }, { wch: 34 }, { wch: 30 }
+      ];
+
+      const libro = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(libro, hoja, "Propuestas");
+
+      XLSX.writeFile(libro, "gold-services-propuestas.xlsx");
+
+      if (typeof window.goldToast === "function") {
+        window.goldToast("Excel generado: gold-services-propuestas.xlsx");
+      }
+
+    });
+
     renderTablaPropuestas();
     actualizarKpisPropuestas();
 

@@ -10,3 +10,8 @@ Config.setRspack(true);
 Config.setVideoImageFormat("jpeg");
 Config.setOverwriteOutput(true);
 Config.overrideBundlerConfig(enableTailwind);
+
+if (process.env.REMOTION_BROWSER_EXECUTABLE) {
+  Config.setBrowserExecutable(process.env.REMOTION_BROWSER_EXECUTABLE);
+  Config.setChromeMode("chrome-for-testing");
+}

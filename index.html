@@ -357,7 +357,10 @@
 
                   <div class="section-title">
                     <h3>Propuestas guardadas</h3>
-                    <button type="button" class="btn ghost" id="exportPropuestasBtn">Exportar JSON</button>
+                    <div style="display:flex; gap:6px;">
+                      <button type="button" class="btn ghost" id="exportExcelBtn">Exportar Excel</button>
+                      <button type="button" class="btn ghost" id="exportPropuestasBtn">Exportar JSON</button>
+                    </div>
                   </div>
 
                   <div class="table-wrap">
@@ -403,6 +406,7 @@
   <!-- JAVASCRIPT -->
   <!-- ============================= -->
 
+  <script src="vendor/xlsx.core.min.js"></script>
   <script src="auth.js"></script>
   <script src="app.js"></script>
   <script src="propuestas.js"></script>
