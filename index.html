@@ -16,6 +16,14 @@
 
   <title>Gold Services | Sistema Operativo Digital</title>
 
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <meta name="theme-color" content="#0b2265">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Gold Services">
+
   <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -476,6 +484,25 @@
       }
 
     });
+  </script>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+
+      window.addEventListener("load", function () {
+
+        navigator.serviceWorker.register("sw.js").catch(function (error) {
+
+          console.error(
+            "GOLD SERVICES: No se pudo registrar el service worker.",
+            error
+          );
+
+        });
+
+      });
+
+    }
   </script>
 
 </body>
